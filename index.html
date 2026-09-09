@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
 
 <style>
+  /* ===== TOKENS ===== */
   :root {
     --navy-deep:   #0C1B2E;
     --navy-mid:    #162B45;
@@ -16,38 +17,34 @@
     --text-muted:  #6B7A8D;
     --text-light:  #A8B8C8;
 
-    --bg:          var(--warm-white);
-    --bg-alt:      var(--off-white);
-    --surface:     #FFFFFF;
-    --fg:          var(--text-body);
-    --fg-muted:    var(--text-muted);
-    --accent:      var(--gold);
-    --header-bg:   var(--navy-deep);
-    --header-fg:   var(--warm-white);
-    --border:      rgba(0,0,0,0.1);
+    --bg:        var(--warm-white);
+    --bg-alt:    var(--off-white);
+    --fg:        var(--text-body);
+    --fg-muted:  var(--text-muted);
+    --border:    rgba(0,0,0,0.1);
+    --header-bg: var(--navy-deep);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg:        var(--navy-deep);
       --bg-alt:    var(--navy-mid);
-      --surface:   var(--navy-mid);
       --fg:        var(--warm-white);
       --fg-muted:  var(--text-light);
-      --header-bg: #080F18;
       --border:    var(--navy-border);
+      --header-bg: #080F18;
     }
   }
   :root[data-theme="dark"] {
     --bg:        var(--navy-deep);
     --bg-alt:    var(--navy-mid);
-    --surface:   var(--navy-mid);
     --fg:        var(--warm-white);
     --fg-muted:  var(--text-light);
-    --header-bg: #080F18;
     --border:    var(--navy-border);
+    --header-bg: #080F18;
   }
 
+  /* ===== RESET ===== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
   body {
@@ -56,305 +53,431 @@
     color: var(--fg);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
 
+  /* ===== TYPE ===== */
   .t-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
   }
-  .t-display {
+  .t-display, .t-heading {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 700;
-    line-height: 1.1;
-    text-wrap: balance;
+    font-weight: 700; line-height: 1.1; text-wrap: balance;
   }
-  .t-heading {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 600;
-    line-height: 1.2;
-    text-wrap: balance;
-  }
+  .t-heading { font-weight: 600; line-height: 1.2; }
 
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem); }
+  section { padding: clamp(3rem, 8vw, 6rem) 0; }
+  .section-header { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  .section-header .t-eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-title { font-size: clamp(1.75rem, 4vw, 2.8rem); }
 
-  /* NAV */
+  /* ===== NAV ===== */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--navy-border);
+    background: var(--header-bg); border-bottom: 1px solid var(--navy-border);
   }
   .nav-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
-    height: 64px; display: flex; align-items: center; justify-content: space-between;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-logo { display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0; }
   .nav-logo-mark {
-    width: 36px; height: 36px; background: var(--gold);
+    width: 32px; height: 32px; background: var(--gold);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .nav-logo-mark span {
     font-family: 'Cormorant Garamond', serif; font-weight: 700;
-    font-size: 1rem; color: var(--navy-deep); line-height: 1;
+    font-size: 0.9rem; color: var(--navy-deep); line-height: 1;
   }
   .nav-logo-text { display: flex; flex-direction: column; }
   .nav-logo-name {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', serif; font-size: 1rem;
     font-weight: 700; color: var(--warm-white); line-height: 1.1;
   }
   .nav-logo-sub {
-    font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em;
+    font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--gold);
   }
-  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
   .nav-links a {
-    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
     color: var(--text-light); transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--warm-white); }
   .nav-cta {
-    background: var(--gold); color: var(--navy-deep) !important;
-    padding: 0.5rem 1.25rem !important; font-weight: 600 !important;
-    transition: background 0.2s !important;
+    background: var(--gold) !important; color: var(--navy-deep) !important;
+    padding: 0.45rem 1.1rem !important; font-weight: 600 !important;
+    transition: background 0.2s !important; white-space: nowrap;
   }
   .nav-cta:hover { background: var(--gold-light) !important; }
 
-  /* HERO */
-  .hero { background: var(--header-bg); padding: 9rem 0 0; position: relative; overflow: hidden; }
+  /* Mobile menu toggle */
+  .nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    padding: 0.5rem; color: var(--warm-white); flex-direction: column;
+    gap: 5px; align-items: center; justify-content: center;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--warm-white); transition: all 0.3s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .nav-drawer {
+    display: none; position: fixed; top: 60px; left: 0; right: 0;
+    background: var(--header-bg); border-bottom: 1px solid var(--navy-border);
+    padding: 1.5rem clamp(1rem, 4vw, 2rem); flex-direction: column; gap: 0; z-index: 99;
+  }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a {
+    display: block; padding: 0.9rem 0;
+    border-bottom: 1px solid var(--navy-border);
+    font-size: 0.9rem; font-weight: 500; color: var(--text-light);
+    transition: color 0.2s;
+  }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: var(--warm-white); }
+  .nav-drawer .drawer-cta {
+    margin-top: 1rem; background: var(--gold); color: var(--navy-deep) !important;
+    padding: 0.75rem 1.5rem; text-align: center; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;
+    border: none;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--header-bg); padding-top: 60px;
+    position: relative; overflow: hidden;
+  }
   .hero::before {
     content: ''; position: absolute; top: -20%; right: -10%;
-    width: 600px; height: 600px;
+    width: 500px; height: 500px;
     background: radial-gradient(circle, rgba(200,149,42,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-inner {
-    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+    max-width: 1100px; margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem) 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end;
   }
-  .hero-content { padding-bottom: 5rem; }
-  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-  .hero-eyebrow::after { content: ''; height: 1px; width: 40px; background: var(--gold); }
-  .hero-headline { font-size: clamp(2.8rem, 5vw, 4.2rem); color: var(--warm-white); margin-bottom: 1.25rem; }
+  .hero-content { padding-bottom: clamp(2.5rem, 5vw, 5rem); }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .hero-eyebrow::after { content: ''; height: 1px; width: 36px; background: var(--gold); flex-shrink: 0; }
+  .hero-headline {
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    color: var(--warm-white); margin-bottom: 1.1rem;
+  }
   .hero-headline em { font-style: italic; color: var(--gold); }
   .hero-sub {
-    font-size: 1.05rem; color: var(--text-light);
-    max-width: 480px; margin-bottom: 2.5rem; line-height: 1.7;
+    font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--text-light);
+    max-width: 480px; margin-bottom: 2rem; line-height: 1.75;
   }
-  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .hero-actions { display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; }
   .btn-primary {
     display: inline-block; background: var(--gold); color: var(--navy-deep);
-    font-weight: 600; font-size: 0.875rem; letter-spacing: 0.04em;
-    padding: 0.875rem 2rem; transition: background 0.2s, transform 0.15s;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em;
+    padding: 0.85rem 1.75rem; transition: background 0.2s, transform 0.15s; white-space: nowrap;
   }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
   .btn-ghost {
     display: inline-block; border: 1px solid var(--navy-border);
-    color: var(--text-light); font-size: 0.875rem; font-weight: 500;
-    padding: 0.875rem 1.75rem; transition: border-color 0.2s, color 0.2s;
+    color: var(--text-light); font-size: 0.85rem; font-weight: 500;
+    padding: 0.85rem 1.5rem; transition: border-color 0.2s, color 0.2s; white-space: nowrap;
   }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-stats { padding-bottom: 4rem; display: flex; flex-direction: column; gap: 0; align-self: end; }
+
+  .hero-stats { padding-bottom: clamp(2rem, 4vw, 4rem); display: flex; flex-direction: column; align-self: end; }
   .hero-stat {
-    padding: 1.5rem 0; border-top: 1px solid var(--navy-border);
+    padding: 1.25rem 0; border-top: 1px solid var(--navy-border);
     display: flex; align-items: baseline; gap: 1rem;
   }
   .hero-stat:last-child { border-bottom: 1px solid var(--navy-border); }
   .hero-stat-num {
-    font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 700; color: var(--gold); line-height: 1;
     font-variant-numeric: tabular-nums; flex-shrink: 0;
   }
-  .hero-stat-label { font-size: 0.8rem; color: var(--text-light); line-height: 1.4; }
+  .hero-stat-label { font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
 
-  /* SLASH DIVIDER */
-  .slash-divider { background: var(--header-bg); height: 80px; position: relative; overflow: hidden; }
+  /* ===== SLASH DIVIDER ===== */
+  .slash-divider { background: var(--header-bg); height: 60px; position: relative; overflow: hidden; }
   .slash-divider::after {
     content: ''; position: absolute; bottom: 0; left: -5%; right: -5%;
     height: 120%; background: var(--bg);
-    transform: skewY(-2.5deg); transform-origin: bottom left;
+    transform: skewY(-2deg); transform-origin: bottom left;
   }
 
-  /* TRUST BAR */
+  /* ===== TRUST BAR ===== */
   .trust-bar {
     background: var(--bg-alt);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.25rem 0;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 1rem 0; overflow-x: auto;
   }
   .trust-bar-inner {
-    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
     display: flex; align-items: center; justify-content: space-between;
-    gap: 2rem; flex-wrap: wrap;
+    gap: 1.25rem; min-width: max-content; width: 100%;
   }
-  .trust-item { display: flex; align-items: center; gap: 0.6rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
   .trust-icon {
-    width: 28px; height: 28px; background: var(--gold); color: var(--navy-deep);
+    width: 24px; height: 24px; background: var(--gold); color: var(--navy-deep);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; flex-shrink: 0;
+    font-size: 0.7rem; flex-shrink: 0;
   }
-  .trust-item-text { font-size: 0.8rem; font-weight: 600; color: var(--fg-muted); letter-spacing: 0.02em; }
+  .trust-item-text { font-size: 0.75rem; font-weight: 600; color: var(--fg-muted); white-space: nowrap; }
 
-  /* SECTIONS */
-  section { padding: 6rem 0; }
-  .section-header { margin-bottom: 3.5rem; }
-  .section-header .t-eyebrow { margin-bottom: 0.75rem; }
-  .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); }
-
-  /* SERVICES */
+  /* ===== SERVICES ===== */
   .services { background: var(--bg); }
-  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--border); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--border);
+  }
   .service-item {
-    padding: 2rem; border-bottom: 1px solid var(--border);
-    display: flex; gap: 1.25rem; align-items: flex-start;
+    padding: clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid var(--border);
+    display: flex; gap: 1rem; align-items: flex-start;
   }
   .service-item:nth-child(odd) { border-right: 1px solid var(--border); }
   .service-num {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
     font-weight: 700; color: var(--gold); opacity: 0.6; flex-shrink: 0;
-    line-height: 1.4; font-variant-numeric: tabular-nums;
+    line-height: 1.5; font-variant-numeric: tabular-nums;
   }
   .service-name {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-    font-weight: 600; margin-bottom: 0.4rem; color: var(--fg);
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    font-weight: 600; margin-bottom: 0.35rem; color: var(--fg);
   }
-  .service-desc { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
+  .service-desc { font-size: 0.82rem; color: var(--fg-muted); line-height: 1.65; }
 
-  /* GOVERNMENT */
-  .government { background: var(--navy-deep); color: var(--warm-white); position: relative; overflow: hidden; }
+  /* ===== GOVERNMENT ===== */
+  .government {
+    background: var(--navy-deep); color: var(--warm-white);
+    position: relative; overflow: hidden;
+  }
   .government::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8952A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
   }
-  .gov-inner { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .gov-content .t-eyebrow { color: var(--gold); }
-  .gov-title { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--warm-white); margin-bottom: 1.25rem; }
-  .gov-desc { color: var(--text-light); margin-bottom: 2.5rem; font-size: 0.95rem; line-height: 1.75; }
+  .gov-inner {
+    position: relative; display: grid;
+    grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start;
+  }
+  .gov-content .t-eyebrow { color: var(--gold); display: block; margin-bottom: 0.75rem; }
+  .gov-title { font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--warm-white); margin-bottom: 1.1rem; }
+  .gov-desc { color: var(--text-light); margin-bottom: 2rem; font-size: 0.9rem; line-height: 1.8; }
   .gov-credentials { display: flex; flex-direction: column; }
   .gov-cred {
-    padding: 1.25rem 0; border-top: 1px solid var(--navy-border);
-    display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: start;
+    padding: 1.1rem 0; border-top: 1px solid var(--navy-border);
+    display: grid; grid-template-columns: 75px 1fr; gap: 0.85rem; align-items: start;
   }
   .gov-cred:last-child { border-bottom: 1px solid var(--navy-border); }
   .gov-cred-label {
-    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; padding-top: 0.15rem;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; padding-top: 0.1rem;
   }
-  .gov-cred-value { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
-  .gov-cred-value strong { display: block; color: var(--warm-white); font-weight: 500; font-size: 0.95rem; margin-bottom: 0.15rem; }
-  .gov-panel { background: rgba(255,255,255,0.04); border: 1px solid var(--navy-border); padding: 2.5rem; }
+  .gov-cred-value { font-size: 0.875rem; color: var(--text-light); line-height: 1.5; }
+  .gov-cred-value strong { display: block; color: var(--warm-white); font-weight: 500; margin-bottom: 0.1rem; }
+  .gov-panel {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--navy-border);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+  }
   .gov-panel-title {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600;
-    color: var(--gold); margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--navy-border);
+    font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600;
+    color: var(--gold); margin-bottom: 1.5rem; padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--navy-border);
   }
-  .gov-sectors { display: flex; flex-direction: column; gap: 0.85rem; }
-  .gov-sector { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--text-light); }
-  .gov-sector-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
-  .gov-note { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--navy-border); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+  .gov-sectors { display: flex; flex-direction: column; gap: 0.8rem; }
+  .gov-sector { display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; color: var(--text-light); }
+  .gov-sector-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .gov-note {
+    margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--navy-border);
+    font-size: 0.76rem; color: var(--text-muted); line-height: 1.65;
+  }
 
-  /* WHY */
+  /* ===== WHY US ===== */
   .why { background: var(--bg-alt); }
-  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
-  .why-accent-line { width: 32px; height: 2px; background: var(--gold); margin-bottom: 1.25rem; }
-  .why-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
-  .why-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.75; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3rem); }
+  .why-accent-line { width: 28px; height: 2px; background: var(--gold); margin-bottom: 1.1rem; }
+  .why-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 600; margin-bottom: 0.65rem; color: var(--fg);
+  }
+  .why-text { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.78; }
 
-  /* CONTACT */
+  /* ===== CONTACT ===== */
   .contact { background: var(--bg); }
-  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .contact-desc { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 2.5rem; line-height: 1.75; }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+  }
+  .contact-desc { font-size: 0.92rem; color: var(--fg-muted); margin-bottom: 2rem; line-height: 1.78; }
   .contact-detail {
     display: flex; align-items: center; gap: 1rem;
-    padding: 1rem 0; border-top: 1px solid var(--border);
+    padding: 0.9rem 0; border-top: 1px solid var(--border);
   }
   .contact-detail:last-child { border-bottom: 1px solid var(--border); }
   .contact-detail-icon {
-    width: 36px; height: 36px; border: 1px solid rgba(200,149,42,0.3);
+    width: 34px; height: 34px; border: 1px solid rgba(200,149,42,0.3);
     display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 0.9rem; flex-shrink: 0;
+    color: var(--gold); font-size: 0.85rem; flex-shrink: 0;
   }
-  .contact-detail-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin-bottom: 0.2rem; }
-  .contact-detail-value { font-size: 0.95rem; font-weight: 500; color: var(--fg); }
+  .contact-detail-label {
+    font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fg-muted); font-weight: 600; margin-bottom: 0.15rem;
+  }
+  .contact-detail-value { font-size: 0.9rem; font-weight: 500; color: var(--fg); }
 
-  /* FORM */
-  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+  /* ===== FORM ===== */
+  .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--fg-muted);
+  }
   input, select, textarea {
     background: var(--bg-alt); border: 1px solid var(--border); color: var(--fg);
-    font-family: 'Inter', sans-serif; font-size: 0.9rem; padding: 0.75rem 1rem;
-    transition: border-color 0.2s; width: 100%; appearance: none;
+    font-family: 'Inter', sans-serif; font-size: 0.9rem; padding: 0.7rem 0.9rem;
+    transition: border-color 0.2s; width: 100%; appearance: none; border-radius: 0;
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
-  textarea { resize: vertical; min-height: 110px; }
+  textarea { resize: vertical; min-height: 100px; }
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7A8D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 1rem center; cursor: pointer;
+    background-repeat: no-repeat; background-position: right 0.9rem center; cursor: pointer;
+    padding-right: 2.5rem;
   }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) input,
+    :root:not([data-theme="light"]) select,
+    :root:not([data-theme="light"]) textarea { background: rgba(255,255,255,0.05); border-color: var(--navy-border); }
+  }
+  :root[data-theme="dark"] input,
+  :root[data-theme="dark"] select,
+  :root[data-theme="dark"] textarea { background: rgba(255,255,255,0.05); border-color: var(--navy-border); }
+
   .form-submit {
     background: var(--gold); border: none; color: var(--navy-deep); cursor: pointer;
-    font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700;
-    letter-spacing: 0.05em; padding: 1rem 2.5rem; text-transform: uppercase;
-    transition: background 0.2s, transform 0.15s; align-self: flex-start;
+    font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.05em; padding: 0.95rem 2rem; text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s; align-self: flex-start; width: 100%;
   }
   .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .form-note { font-size: 0.75rem; color: var(--fg-muted); }
+  .form-note { font-size: 0.72rem; color: var(--fg-muted); line-height: 1.5; }
 
-  /* FOOTER */
+  /* ===== FOOTER ===== */
   footer {
     background: var(--navy-deep); color: var(--text-light);
-    padding: 3rem 0 2rem; border-top: 3px solid var(--gold);
+    padding: clamp(2rem, 5vw, 3rem) 0 1.5rem; border-top: 3px solid var(--gold);
   }
   .footer-inner {
-    max-width: 1100px; margin: 0 auto 2.5rem; padding: 0 2rem;
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem;
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem); margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   }
-  .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--warm-white); margin-bottom: 0.25rem; }
-  .footer-brand-tagline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .footer-brand-desc { font-size: 0.825rem; line-height: 1.7; color: var(--text-muted); }
-  .footer-col-title { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 1.25rem; }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-links a { font-size: 0.825rem; color: var(--text-muted); transition: color 0.2s; }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 700; color: var(--warm-white); margin-bottom: 0.2rem;
+  }
+  .footer-brand-tagline {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.85rem;
+  }
+  .footer-brand-desc { font-size: 0.8rem; line-height: 1.72; color: var(--text-muted); }
+  .footer-col-title {
+    font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 1.1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-links a { font-size: 0.8rem; color: var(--text-muted); transition: color 0.2s; }
   .footer-links a:hover { color: var(--warm-white); }
   .footer-bottom {
-    max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 0;
+    max-width: 1100px; margin: 0 auto;
+    padding: 1.25rem clamp(1rem, 4vw, 2rem) 0;
     border-top: 1px solid var(--navy-border);
-    display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; flex-wrap: wrap;
   }
-  .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
-  .footer-naics { font-size: 0.72rem; letter-spacing: 0.06em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+  .footer-naics { font-size: 0.68rem; letter-spacing: 0.06em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
-  /* RESPONSIVE */
+  /* ===== RESPONSIVE: TABLET (≤900px) ===== */
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-content { padding-bottom: 2rem; }
-    .hero-stats { flex-direction: row; flex-wrap: wrap; padding-bottom: 3rem; border-top: 1px solid var(--navy-border); padding-top: 2rem; }
-    .hero-stat { border: none; padding: 0.75rem 1.5rem 0.75rem 0; }
-    .gov-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .why-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+
+    .hero-inner { grid-template-columns: 1fr; gap: 0; }
+    .hero-content { padding-bottom: 2rem; }
+    .hero-stats {
+      flex-direction: row; flex-wrap: wrap;
+      padding: 1.5rem 0 2.5rem; border-top: 1px solid var(--navy-border); gap: 0;
+    }
+    .hero-stat { border: none !important; padding: 0.5rem 2rem 0.5rem 0; flex: 0 0 auto; }
+
+    .gov-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .why-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ===== RESPONSIVE: MOBILE (≤600px) ===== */
   @media (max-width: 600px) {
+    .hero-headline { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+    .hero-sub { font-size: 0.9rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost { text-align: center; }
+    .hero-stats { flex-direction: column; gap: 0; border-top: none; padding-top: 0; }
+    .hero-stat {
+      border-top: 1px solid var(--navy-border) !important;
+      padding: 1rem 0 !important;
+    }
+    .hero-stat:last-child { border-bottom: 1px solid var(--navy-border) !important; }
+
+    .trust-bar-inner { padding: 0 1rem; gap: 1rem; }
+
     .services-grid { grid-template-columns: 1fr; }
-    .service-item { padding: 1.5rem 0; }
-    .service-item:nth-child(odd) { border-right: none; }
+    .service-item { padding: 1.25rem 0 !important; border-right: none !important; }
+
+    .gov-cred { grid-template-columns: 60px 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+
     .form-row { grid-template-columns: 1fr; }
-    .trust-bar-inner { justify-content: center; }
+    .contact-detail-value { font-size: 0.85rem; word-break: break-all; }
+
+    .footer-inner { grid-template-columns: 1fr; gap: 1.75rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+
+    .slash-divider { height: 40px; }
   }
+
+  /* ===== RESPONSIVE: SMALL MOBILE (≤380px) ===== */
+  @media (max-width: 380px) {
+    .nav-logo-sub { display: none; }
+    .hero-headline { font-size: 1.8rem; }
+    .btn-primary, .btn-ghost { padding: 0.8rem 1.25rem; font-size: 0.82rem; }
+    .gov-cred { grid-template-columns: 1fr; gap: 0.25rem; }
+    .gov-cred-label { padding-top: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { transition: none !important; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
   }
 </style>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
@@ -370,9 +493,21 @@
       <li><a href="#about">Why Us</a></li>
       <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#services" onclick="closeNav()">Services</a>
+  <a href="#government" onclick="closeNav()">Government</a>
+  <a href="#about" onclick="closeNav()">Why Us</a>
+  <a href="#contact" class="drawer-cta" onclick="closeNav()">Get a Quote</a>
+</div>
+
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-content">
@@ -403,90 +538,69 @@
 
 <div class="slash-divider"></div>
 
+<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-bar-inner">
     <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Fully Bonded &amp; Insured</span></div>
     <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Background-Checked Staff</span></div>
     <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">SAM.gov Registered</span></div>
     <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Multi-State Coverage</span></div>
-    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">OSHA-Compliant Protocols</span></div>
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">OSHA-Compliant</span></div>
   </div>
 </div>
 
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="container">
     <div class="section-header">
-      <p class="t-eyebrow">What We Do</p>
+      <span class="t-eyebrow">What We Do</span>
       <h2 class="t-heading section-title">Comprehensive Cleaning Services</h2>
     </div>
     <div class="services-grid">
       <div class="service-item">
         <span class="service-num">01</span>
-        <div>
-          <h3 class="service-name">Janitorial Services</h3>
-          <p class="service-desc">Daily, weekly, or custom-schedule cleaning for offices, lobbies, restrooms, and common areas.</p>
-        </div>
+        <div><h3 class="service-name">Janitorial Services</h3><p class="service-desc">Daily, weekly, or custom-schedule cleaning for offices, lobbies, restrooms, and common areas.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">02</span>
-        <div>
-          <h3 class="service-name">Floor Care &amp; Refinishing</h3>
-          <p class="service-desc">Stripping, waxing, buffing, and refinishing for hard floors; deep extraction cleaning for carpets.</p>
-        </div>
+        <div><h3 class="service-name">Floor Care &amp; Refinishing</h3><p class="service-desc">Stripping, waxing, buffing, and refinishing for hard floors; deep extraction cleaning for carpets.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">03</span>
-        <div>
-          <h3 class="service-name">Sanitization &amp; Disinfection</h3>
-          <p class="service-desc">EPA-registered disinfectants and electrostatic application for high-touch surfaces and sensitive environments.</p>
-        </div>
+        <div><h3 class="service-name">Sanitization &amp; Disinfection</h3><p class="service-desc">EPA-registered disinfectants and electrostatic application for high-touch surfaces and sensitive environments.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">04</span>
-        <div>
-          <h3 class="service-name">Window &amp; Glass Cleaning</h3>
-          <p class="service-desc">Interior and exterior window cleaning for commercial buildings, storefronts, and government facilities.</p>
-        </div>
+        <div><h3 class="service-name">Window &amp; Glass Cleaning</h3><p class="service-desc">Interior and exterior window cleaning for commercial buildings, storefronts, and government facilities.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">05</span>
-        <div>
-          <h3 class="service-name">Post-Construction Cleanup</h3>
-          <p class="service-desc">Final clean after renovations or new builds — debris removal, dust control, fixture polishing, ready-for-occupancy prep.</p>
-        </div>
+        <div><h3 class="service-name">Post-Construction Cleanup</h3><p class="service-desc">Final clean after renovations or new builds — debris removal, dust control, fixture polishing, ready-for-occupancy prep.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">06</span>
-        <div>
-          <h3 class="service-name">Pressure Washing</h3>
-          <p class="service-desc">Exterior surfaces, parking garages, sidewalks, loading docks, and building entryways.</p>
-        </div>
+        <div><h3 class="service-name">Pressure Washing</h3><p class="service-desc">Exterior surfaces, parking garages, sidewalks, loading docks, and building entryways.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">07</span>
-        <div>
-          <h3 class="service-name">Restroom Sanitation</h3>
-          <p class="service-desc">Complete restroom servicing including grout scrubbing, fixture disinfection, and consumable restocking.</p>
-        </div>
+        <div><h3 class="service-name">Restroom Sanitation</h3><p class="service-desc">Complete restroom servicing including grout scrubbing, fixture disinfection, and consumable restocking.</p></div>
       </div>
       <div class="service-item">
         <span class="service-num">08</span>
-        <div>
-          <h3 class="service-name">Common Area Maintenance</h3>
-          <p class="service-desc">Lobbies, conference rooms, break rooms, stairwells — recurring or event-based service packages.</p>
-        </div>
+        <div><h3 class="service-name">Common Area Maintenance</h3><p class="service-desc">Lobbies, conference rooms, break rooms, stairwells — recurring or event-based service packages.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- GOVERNMENT -->
 <section class="government" id="government">
   <div class="container">
     <div class="gov-inner">
       <div class="gov-content">
-        <p class="t-eyebrow" style="margin-bottom: 0.75rem;">Government &amp; Institutional</p>
+        <span class="t-eyebrow">Government &amp; Institutional</span>
         <h2 class="t-heading gov-title">Built for Compliance-Sensitive Environments</h2>
-        <p class="gov-desc">Do Right Services LLC understands the unique requirements of government and institutional cleaning contracts — security protocols, after-hours access procedures, certified product requirements, and performance documentation. We are positioned and prepared to serve federal, state, and municipal clients.</p>
+        <p class="gov-desc">Do Right Services LLC understands the unique requirements of government and institutional cleaning contracts — security protocols, after-hours access procedures, certified product requirements, and performance documentation.</p>
         <div class="gov-credentials">
           <div class="gov-cred">
             <span class="gov-cred-label">NAICS</span>
@@ -519,17 +633,18 @@
             <div class="gov-sector"><span class="gov-sector-dot"></span>Retail &amp; Hospitality Spaces</div>
             <div class="gov-sector"><span class="gov-sector-dot"></span>Industrial &amp; Warehouse Facilities</div>
           </div>
-          <p class="gov-note">Interested in a government contract? Contact us to request our capability statement, DUNS number, and past performance references.</p>
+          <p class="gov-note">Contact us to request our capability statement, DUNS number, and past performance references.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- WHY US -->
 <section class="why" id="about">
   <div class="container">
     <div class="section-header">
-      <p class="t-eyebrow">Why Do Right</p>
+      <span class="t-eyebrow">Why Do Right</span>
       <h2 class="t-heading section-title">Our Commitment to Every Client</h2>
     </div>
     <div class="why-grid">
@@ -541,22 +656,23 @@
       <div class="why-item">
         <div class="why-accent-line"></div>
         <h3 class="why-title">Trained, Trusted Personnel</h3>
-        <p class="why-text">Every Do Right team member is vetted, trained in commercial cleaning protocols, and briefed on site-specific security requirements. Consistent crews mean consistent results — and familiar faces you can trust.</p>
+        <p class="why-text">Every Do Right team member is vetted, trained in commercial cleaning protocols, and briefed on site-specific security requirements. Consistent crews mean consistent results.</p>
       </div>
       <div class="why-item">
         <div class="why-accent-line"></div>
         <h3 class="why-title">Flexible Service Agreements</h3>
-        <p class="why-text">Whether you need nightly janitorial, a one-time deep clean, or a multi-year contract for a government portfolio, we build agreements around your schedule, budget, and facility requirements.</p>
+        <p class="why-text">Whether you need nightly janitorial, a one-time deep clean, or a multi-year government contract, we build agreements around your schedule, budget, and facility requirements.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-inner">
-      <div class="contact-info">
-        <p class="t-eyebrow" style="margin-bottom: 0.75rem;">Get in Touch</p>
+      <div>
+        <span class="t-eyebrow" style="display:block;margin-bottom:0.75rem;">Get in Touch</span>
         <h2 class="t-heading section-title">Request a Free Quote</h2>
         <p class="contact-desc">Tell us about your facility and cleaning needs. We'll follow up within one business day to schedule a walkthrough and provide a detailed, no-obligation quote.</p>
         <div>
@@ -583,7 +699,7 @@
           </div>
         </div>
       </div>
-      <form class="contact-form" onsubmit="handleSubmit(event)">
+      <form class="contact-form" action="https://formspree.io/f/xppzklpa" method="POST" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-group">
             <label for="fname">First Name</label>
@@ -640,6 +756,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div>
@@ -674,19 +791,59 @@
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  function toggleNav() {
+    const btn = document.querySelector('.nav-toggle');
+    const drawer = document.getElementById('navDrawer');
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  }
+  function closeNav() {
+    document.querySelector('.nav-toggle').classList.remove('open');
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+  // Close drawer on outside click
+  document.addEventListener('click', function(e) {
+    const nav = document.querySelector('nav');
+    const drawer = document.getElementById('navDrawer');
+    if (!nav.contains(e.target) && !drawer.contains(e.target)) closeNav();
+  });
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#4A7C59';
-    btn.style.color = '#fff';
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
     btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Send Quote Request';
-      btn.style.background = '';
-      btn.style.color = '';
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = '#4A7C59';
+        btn.style.color = '#fff';
+        form.reset();
+        setTimeout(() => {
+          btn.textContent = 'Send Quote Request';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.disabled = false;
+        }, 4000);
+      } else {
+        btn.textContent = 'Error — Try Again';
+        btn.style.background = '#C0392B';
+        btn.style.color = '#fff';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — Try Again';
+      btn.style.background = '#C0392B';
+      btn.style.color = '#fff';
       btn.disabled = false;
-      e.target.reset();
-    }, 3000);
+    }
   }
 </script>
