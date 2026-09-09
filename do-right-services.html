@@ -1,0 +1,692 @@
+<title>Do Right Services LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
+
+<style>
+  :root {
+    --navy-deep:   #0C1B2E;
+    --navy-mid:    #162B45;
+    --navy-border: #1E3A5A;
+    --gold:        #C8952A;
+    --gold-light:  #DFB45A;
+    --warm-white:  #F7F4EE;
+    --off-white:   #EDE9E0;
+    --text-body:   #2C3E50;
+    --text-muted:  #6B7A8D;
+    --text-light:  #A8B8C8;
+
+    --bg:          var(--warm-white);
+    --bg-alt:      var(--off-white);
+    --surface:     #FFFFFF;
+    --fg:          var(--text-body);
+    --fg-muted:    var(--text-muted);
+    --accent:      var(--gold);
+    --header-bg:   var(--navy-deep);
+    --header-fg:   var(--warm-white);
+    --border:      rgba(0,0,0,0.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        var(--navy-deep);
+      --bg-alt:    var(--navy-mid);
+      --surface:   var(--navy-mid);
+      --fg:        var(--warm-white);
+      --fg-muted:  var(--text-light);
+      --header-bg: #080F18;
+      --border:    var(--navy-border);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        var(--navy-deep);
+    --bg-alt:    var(--navy-mid);
+    --surface:   var(--navy-mid);
+    --fg:        var(--warm-white);
+    --fg-muted:  var(--text-light);
+    --header-bg: #080F18;
+    --border:    var(--navy-border);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .t-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .t-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .t-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-logo-mark {
+    width: 36px; height: 36px; background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nav-logo-mark span {
+    font-family: 'Cormorant Garamond', serif; font-weight: 700;
+    font-size: 1rem; color: var(--navy-deep); line-height: 1;
+  }
+  .nav-logo-text { display: flex; flex-direction: column; }
+  .nav-logo-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    font-weight: 700; color: var(--warm-white); line-height: 1.1;
+  }
+  .nav-logo-sub {
+    font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--text-light); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--warm-white); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy-deep) !important;
+    padding: 0.5rem 1.25rem !important; font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* HERO */
+  .hero { background: var(--header-bg); padding: 9rem 0 0; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,149,42,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+  }
+  .hero-content { padding-bottom: 5rem; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .hero-eyebrow::after { content: ''; height: 1px; width: 40px; background: var(--gold); }
+  .hero-headline { font-size: clamp(2.8rem, 5vw, 4.2rem); color: var(--warm-white); margin-bottom: 1.25rem; }
+  .hero-headline em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-light);
+    max-width: 480px; margin-bottom: 2.5rem; line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; background: var(--gold); color: var(--navy-deep);
+    font-weight: 600; font-size: 0.875rem; letter-spacing: 0.04em;
+    padding: 0.875rem 2rem; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-block; border: 1px solid var(--navy-border);
+    color: var(--text-light); font-size: 0.875rem; font-weight: 500;
+    padding: 0.875rem 1.75rem; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats { padding-bottom: 4rem; display: flex; flex-direction: column; gap: 0; align-self: end; }
+  .hero-stat {
+    padding: 1.5rem 0; border-top: 1px solid var(--navy-border);
+    display: flex; align-items: baseline; gap: 1rem;
+  }
+  .hero-stat:last-child { border-bottom: 1px solid var(--navy-border); }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+    font-weight: 700; color: var(--gold); line-height: 1;
+    font-variant-numeric: tabular-nums; flex-shrink: 0;
+  }
+  .hero-stat-label { font-size: 0.8rem; color: var(--text-light); line-height: 1.4; }
+
+  /* SLASH DIVIDER */
+  .slash-divider { background: var(--header-bg); height: 80px; position: relative; overflow: hidden; }
+  .slash-divider::after {
+    content: ''; position: absolute; bottom: 0; left: -5%; right: -5%;
+    height: 120%; background: var(--bg);
+    transform: skewY(-2.5deg); transform-origin: bottom left;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+  }
+  .trust-bar-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 0.6rem; }
+  .trust-icon {
+    width: 28px; height: 28px; background: var(--gold); color: var(--navy-deep);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; flex-shrink: 0;
+  }
+  .trust-item-text { font-size: 0.8rem; font-weight: 600; color: var(--fg-muted); letter-spacing: 0.02em; }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header .t-eyebrow { margin-bottom: 0.75rem; }
+  .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); }
+
+  /* SERVICES */
+  .services { background: var(--bg); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--border); }
+  .service-item {
+    padding: 2rem; border-bottom: 1px solid var(--border);
+    display: flex; gap: 1.25rem; align-items: flex-start;
+  }
+  .service-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 700; color: var(--gold); opacity: 0.6; flex-shrink: 0;
+    line-height: 1.4; font-variant-numeric: tabular-nums;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    font-weight: 600; margin-bottom: 0.4rem; color: var(--fg);
+  }
+  .service-desc { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
+
+  /* GOVERNMENT */
+  .government { background: var(--navy-deep); color: var(--warm-white); position: relative; overflow: hidden; }
+  .government::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8952A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .gov-inner { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .gov-content .t-eyebrow { color: var(--gold); }
+  .gov-title { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--warm-white); margin-bottom: 1.25rem; }
+  .gov-desc { color: var(--text-light); margin-bottom: 2.5rem; font-size: 0.95rem; line-height: 1.75; }
+  .gov-credentials { display: flex; flex-direction: column; }
+  .gov-cred {
+    padding: 1.25rem 0; border-top: 1px solid var(--navy-border);
+    display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: start;
+  }
+  .gov-cred:last-child { border-bottom: 1px solid var(--navy-border); }
+  .gov-cred-label {
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; padding-top: 0.15rem;
+  }
+  .gov-cred-value { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
+  .gov-cred-value strong { display: block; color: var(--warm-white); font-weight: 500; font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .gov-panel { background: rgba(255,255,255,0.04); border: 1px solid var(--navy-border); padding: 2.5rem; }
+  .gov-panel-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600;
+    color: var(--gold); margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--navy-border);
+  }
+  .gov-sectors { display: flex; flex-direction: column; gap: 0.85rem; }
+  .gov-sector { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: var(--text-light); }
+  .gov-sector-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .gov-note { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--navy-border); font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* WHY */
+  .why { background: var(--bg-alt); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  .why-accent-line { width: 32px; height: 2px; background: var(--gold); margin-bottom: 1.25rem; }
+  .why-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .why-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.75; }
+
+  /* CONTACT */
+  .contact { background: var(--bg); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-desc { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 2.5rem; line-height: 1.75; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 0; border-top: 1px solid var(--border);
+  }
+  .contact-detail:last-child { border-bottom: 1px solid var(--border); }
+  .contact-detail-icon {
+    width: 36px; height: 36px; border: 1px solid rgba(200,149,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 0.9rem; flex-shrink: 0;
+  }
+  .contact-detail-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); font-weight: 600; margin-bottom: 0.2rem; }
+  .contact-detail-value { font-size: 0.95rem; font-weight: 500; color: var(--fg); }
+
+  /* FORM */
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+  input, select, textarea {
+    background: var(--bg-alt); border: 1px solid var(--border); color: var(--fg);
+    font-family: 'Inter', sans-serif; font-size: 0.9rem; padding: 0.75rem 1rem;
+    transition: border-color 0.2s; width: 100%; appearance: none;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 110px; }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7A8D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1rem center; cursor: pointer;
+  }
+  .form-submit {
+    background: var(--gold); border: none; color: var(--navy-deep); cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 700;
+    letter-spacing: 0.05em; padding: 1rem 2.5rem; text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s; align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .form-note { font-size: 0.75rem; color: var(--fg-muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-deep); color: var(--text-light);
+    padding: 3rem 0 2rem; border-top: 3px solid var(--gold);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto 2.5rem; padding: 0 2rem;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem;
+  }
+  .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--warm-white); margin-bottom: 0.25rem; }
+  .footer-brand-tagline { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .footer-brand-desc { font-size: 0.825rem; line-height: 1.7; color: var(--text-muted); }
+  .footer-col-title { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 1.25rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { font-size: 0.825rem; color: var(--text-muted); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--warm-white); }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 0;
+    border-top: 1px solid var(--navy-border);
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+  .footer-naics { font-size: 0.72rem; letter-spacing: 0.06em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-content { padding-bottom: 2rem; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; padding-bottom: 3rem; border-top: 1px solid var(--navy-border); padding-top: 2rem; }
+    .hero-stat { border: none; padding: 0.75rem 1.5rem 0.75rem 0; }
+    .gov-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-item { padding: 1.5rem 0; }
+    .service-item:nth-child(odd) { border-right: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .trust-bar-inner { justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark"><span>DR</span></div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Do Right Services</span>
+        <span class="nav-logo-sub">Commercial Cleaning LLC</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#government">Government</a></li>
+      <li><a href="#about">Why Us</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="t-eyebrow">Commercial Cleaning Specialists</span></div>
+      <h1 class="t-display hero-headline">Clean Facilities.<br><em>Earned Trust.</em></h1>
+      <p class="hero-sub">Do Right Services LLC delivers professional commercial cleaning for federal and state government facilities, local businesses, and public institutions — with the reliability compliance-sensitive environments demand.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request a Free Quote</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">Bonded &amp;<br>Insured</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">24/7</span>
+        <span class="hero-stat-label">Flexible Scheduling<br>Available</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">Gov</span>
+        <span class="hero-stat-label">Contract Ready<br>NAICS 561720</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="slash-divider"></div>
+
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Fully Bonded &amp; Insured</span></div>
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Background-Checked Staff</span></div>
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">SAM.gov Registered</span></div>
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">Multi-State Coverage</span></div>
+    <div class="trust-item"><div class="trust-icon">✓</div><span class="trust-item-text">OSHA-Compliant Protocols</span></div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow">What We Do</p>
+      <h2 class="t-heading section-title">Comprehensive Cleaning Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">
+        <span class="service-num">01</span>
+        <div>
+          <h3 class="service-name">Janitorial Services</h3>
+          <p class="service-desc">Daily, weekly, or custom-schedule cleaning for offices, lobbies, restrooms, and common areas.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">02</span>
+        <div>
+          <h3 class="service-name">Floor Care &amp; Refinishing</h3>
+          <p class="service-desc">Stripping, waxing, buffing, and refinishing for hard floors; deep extraction cleaning for carpets.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">03</span>
+        <div>
+          <h3 class="service-name">Sanitization &amp; Disinfection</h3>
+          <p class="service-desc">EPA-registered disinfectants and electrostatic application for high-touch surfaces and sensitive environments.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">04</span>
+        <div>
+          <h3 class="service-name">Window &amp; Glass Cleaning</h3>
+          <p class="service-desc">Interior and exterior window cleaning for commercial buildings, storefronts, and government facilities.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">05</span>
+        <div>
+          <h3 class="service-name">Post-Construction Cleanup</h3>
+          <p class="service-desc">Final clean after renovations or new builds — debris removal, dust control, fixture polishing, ready-for-occupancy prep.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">06</span>
+        <div>
+          <h3 class="service-name">Pressure Washing</h3>
+          <p class="service-desc">Exterior surfaces, parking garages, sidewalks, loading docks, and building entryways.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">07</span>
+        <div>
+          <h3 class="service-name">Restroom Sanitation</h3>
+          <p class="service-desc">Complete restroom servicing including grout scrubbing, fixture disinfection, and consumable restocking.</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">08</span>
+        <div>
+          <h3 class="service-name">Common Area Maintenance</h3>
+          <p class="service-desc">Lobbies, conference rooms, break rooms, stairwells — recurring or event-based service packages.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="government" id="government">
+  <div class="container">
+    <div class="gov-inner">
+      <div class="gov-content">
+        <p class="t-eyebrow" style="margin-bottom: 0.75rem;">Government &amp; Institutional</p>
+        <h2 class="t-heading gov-title">Built for Compliance-Sensitive Environments</h2>
+        <p class="gov-desc">Do Right Services LLC understands the unique requirements of government and institutional cleaning contracts — security protocols, after-hours access procedures, certified product requirements, and performance documentation. We are positioned and prepared to serve federal, state, and municipal clients.</p>
+        <div class="gov-credentials">
+          <div class="gov-cred">
+            <span class="gov-cred-label">NAICS</span>
+            <div class="gov-cred-value"><strong>561720 — Janitorial Services</strong>Primary classification for commercial and government cleaning contracts.</div>
+          </div>
+          <div class="gov-cred">
+            <span class="gov-cred-label">SAM.gov</span>
+            <div class="gov-cred-value"><strong>Registered &amp; Active</strong>System for Award Management registration maintained for federal procurement eligibility.</div>
+          </div>
+          <div class="gov-cred">
+            <span class="gov-cred-label">Bonding</span>
+            <div class="gov-cred-value"><strong>Fully Bonded &amp; Insured</strong>General liability and janitorial bond coverage meeting contract thresholds.</div>
+          </div>
+          <div class="gov-cred">
+            <span class="gov-cred-label">Personnel</span>
+            <div class="gov-cred-value"><strong>Background-Checked Staff</strong>All staff undergo criminal background screening prior to assignment to secure facilities.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="gov-panel">
+          <div class="gov-panel-title">Sectors We Serve</div>
+          <div class="gov-sectors">
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Federal Office Buildings &amp; Courthouses</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>State &amp; County Government Facilities</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Municipal Buildings &amp; City Halls</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Public Schools &amp; Educational Institutions</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Healthcare &amp; Medical Office Facilities</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Commercial Office Parks</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Retail &amp; Hospitality Spaces</div>
+            <div class="gov-sector"><span class="gov-sector-dot"></span>Industrial &amp; Warehouse Facilities</div>
+          </div>
+          <p class="gov-note">Interested in a government contract? Contact us to request our capability statement, DUNS number, and past performance references.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="about">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow">Why Do Right</p>
+      <h2 class="t-heading section-title">Our Commitment to Every Client</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-accent-line"></div>
+        <h3 class="why-title">Accountability at Every Visit</h3>
+        <p class="why-text">Our supervisors inspect every completed job. We document our work, follow up on any concerns, and maintain detailed service logs — because a clean facility shouldn't require you to check behind us.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-accent-line"></div>
+        <h3 class="why-title">Trained, Trusted Personnel</h3>
+        <p class="why-text">Every Do Right team member is vetted, trained in commercial cleaning protocols, and briefed on site-specific security requirements. Consistent crews mean consistent results — and familiar faces you can trust.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-accent-line"></div>
+        <h3 class="why-title">Flexible Service Agreements</h3>
+        <p class="why-text">Whether you need nightly janitorial, a one-time deep clean, or a multi-year contract for a government portfolio, we build agreements around your schedule, budget, and facility requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <p class="t-eyebrow" style="margin-bottom: 0.75rem;">Get in Touch</p>
+        <h2 class="t-heading section-title">Request a Free Quote</h2>
+        <p class="contact-desc">Tell us about your facility and cleaning needs. We'll follow up within one business day to schedule a walkthrough and provide a detailed, no-obligation quote.</p>
+        <div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">✉</div>
+            <div>
+              <div class="contact-detail-label">Email</div>
+              <div class="contact-detail-value">dorightservicellc@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">⌖</div>
+            <div>
+              <div class="contact-detail-label">Service Area</div>
+              <div class="contact-detail-value">Multi-State Regional Coverage</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">◷</div>
+            <div>
+              <div class="contact-detail-label">Response Time</div>
+              <div class="contact-detail-value">Within 1 Business Day</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Jane" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="org">Organization / Facility</label>
+          <input type="text" id="org" placeholder="Agency or Company Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@agency.gov" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ftype">Facility Type</label>
+            <select id="ftype">
+              <option value="">Select one...</option>
+              <option>Federal Government</option>
+              <option>State / Local Government</option>
+              <option>Healthcare / Medical</option>
+              <option>Education</option>
+              <option>Commercial Office</option>
+              <option>Retail / Hospitality</option>
+              <option>Industrial / Warehouse</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sqft">Approx. Square Footage</label>
+            <select id="sqft">
+              <option value="">Select range...</option>
+              <option>Under 5,000 sq ft</option>
+              <option>5,000 – 15,000 sq ft</option>
+              <option>15,000 – 50,000 sq ft</option>
+              <option>50,000 – 100,000 sq ft</option>
+              <option>100,000+ sq ft</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Cleaning Needs &amp; Notes</label>
+          <textarea id="message" placeholder="Describe the services you need, frequency, any special requirements..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Quote Request</button>
+        <p class="form-note">By submitting, you agree to be contacted by Do Right Services LLC regarding your inquiry.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Do Right Services LLC</div>
+      <div class="footer-brand-tagline">Commercial Cleaning Services</div>
+      <p class="footer-brand-desc">Professional commercial cleaning for government agencies, local businesses, and public institutions. Built on reliability, accountability, and results that speak for themselves.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Janitorial Services</a></li>
+        <li><a href="#services">Floor Care &amp; Refinishing</a></li>
+        <li><a href="#services">Sanitization</a></li>
+        <li><a href="#services">Post-Construction</a></li>
+        <li><a href="#services">Pressure Washing</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">Why Do Right</a></li>
+        <li><a href="#government">Government Contracts</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+        <li><a href="mailto:dorightservicellc@gmail.com">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Do Right Services LLC. All rights reserved.</span>
+    <span class="footer-naics">NAICS 561720 · SAM.gov Registered · Bonded &amp; Insured</span>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#4A7C59';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Quote Request';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+</script>
